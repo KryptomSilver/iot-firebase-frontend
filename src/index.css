@@ -1,13 +1,50 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+    font-family: "OdibeeSansRegular";
+    src: local("OdibeeSansRegular"),
+        url("./fonts/OdibeeSans-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "PattayaRegular";
+    src: local("PattayaRegular"),
+        url("./fonts/Pattaya-Regular.ttf") format("truetype");
+    font-weight: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+    font-family: "RobotoLight";
+    src: local("RobotoLight"),
+        url("./fonts/Roboto-Light.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "RobotoRegular";
+    src: local("RobotoRegular"),
+        url("./fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+.font {
+    font-family: OdibeeSansRegular;
+}
+.fonts {
+    font-family: PattayaRegular;
+}
+.font-roboto {
+    font-family: RobotoRegular;
+}
+.font-roboto-light {
+    font-family: RobotoLight;
+}
+
+/* Menu sensores */
+.boton:hover {
+    transform: scale(1.08);
+}
+.boton:active {
+    transform: scale(1);
+}
+.boton {
+    cursor: pointer;
+    transition: 0.3s;
 }
