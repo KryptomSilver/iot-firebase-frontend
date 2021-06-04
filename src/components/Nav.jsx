@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import authContext from "../context/auth/authContext";
 
 const Nav = () => {
+    const authcontext = useContext(authContext);
+    const { autenticado, cerrarSesion } = authcontext;
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container-fluid">
@@ -42,14 +45,24 @@ const Nav = () => {
                             </a>
                         </li>
                     </ul>
-                    <form className="d-flex">
-                        <button
-                            className="btn btn-secondary my-2 my-sm-0 font-roboto"
-                            type="submit"
-                        >
-                            Usuario
-                        </button>
-                    </form>
+                    <div className="d-flex">
+                        {autenticado ? (
+                            <button
+                                href="/login"
+                                className="btn btn-secondary my-2 my-sm-0 font-roboto"
+                                onClick={() => cerrarSesion()}
+                            >
+                                Cerrar Sesión
+                            </button>
+                        ) : (
+                            <a
+                                href="/login"
+                                className="btn btn-secondary my-2 my-sm-0 font-roboto"
+                            >
+                                Login
+                            </a>
+                        )}
+                    </div>
                 </div>
             </div>
         </nav>

@@ -1,31 +1,73 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import Sensor from "../components/Sensor";
 
+import firebaseContext from "../context/firebase/firebaseContext";
+
 const Home = () => {
+    const firebasecontext = useContext(firebaseContext);
+    const { databaseF } = firebasecontext;
+    const [temperature, setTemperature] = useState(0);
+    const [humidity, setHumidity] = useState(0);
+
+    useEffect(() => {
+        const getTemperature = async () => {
+            const response = await databaseF
+                .collection("sensores")
+                .orderBy("added_at", "desc")
+                .limit(1)
+                .get();
+            response.forEach((doc) => {
+                setTemperature(doc.data().temperatura);
+            });
+        };
+        const getHumidity = async () => {
+            const response = await databaseF
+                .collection("sensores")
+                .orderBy("added_at", "desc")
+                .limit(1)
+                .get();
+            response.forEach((doc) => {
+                setHumidity(doc.data().humedad);
+            });
+        };
+        setInterval(() => getTemperature(), 500);
+        setInterval(() => getHumidity(), 500);
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <Fragment>
             <Nav />
             <div className="container mt-5">
-                <div className="row">
-                    <div className="col">
+                <div className="row ">
+                    <div className="col  offset-md-1">
                         <Sensor
                             nombre="Sensor de temperatura"
                             img="https://www.pngkit.com/png/full/252-2520545_temperatura-para-dibujar.png"
                             ancho="60"
                             alto="80"
+                            texto={
+                                temperature === 0
+                                    ? "Sin conexión"
+                                    : `Temperatura: ${temperature} \u00B0C`
+                            }
                         />
                     </div>
 
-                    <div className="col">
+                    <div className="col  offset-md-1">
                         <Sensor
                             nombre="Sensor de humedad"
                             img="https://image.flaticon.com/icons/png/512/728/728093.png"
                             alto="60"
-                            texto="Humedad: 80 %"
+                            texto={
+                                humidity === 0
+                                    ? "Sin conexión"
+                                    : `Humedad: ${humidity} %`
+                            }
                         />
                     </div>
-                    <div className="col">
+                    {/* <div className="col">
                         <Sensor
                             nombre="Sensor de gas"
                             ancho="85"
@@ -72,7 +114,7 @@ const Home = () => {
                             img="https://i.pinimg.com/originals/65/20/46/65204611336c9fa604d265a7782ebf16.png"
                             texto="Puerta: Cerrada"
                         />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </Fragment>
