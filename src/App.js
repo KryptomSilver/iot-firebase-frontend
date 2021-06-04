@@ -1,15 +1,8 @@
 import "bootswatch/dist/darkly/bootstrap.min.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./views/Home";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
-    return (
-        <Router>
-            <Switch>
-                <Route exact path="/" component={Home} />
-            </Switch>
-        </Router>
-    );
+    return <AppRouter />;
 }
 
 export default App;
