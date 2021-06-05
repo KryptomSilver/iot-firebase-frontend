@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthContext from "../context/auth/authContext";
+import authContext from "../context/auth/authContext";
 
-const Login = (props) => {
+const Singup = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const authcontext = useContext(AuthContext);
-    const { autenticado, iniciarSesion } = authcontext;
-    // En caso de que el password o usuario no exista
+    const authcontext = useContext(authContext);
+    const { autenticado, crearUsuario } = authcontext;
     useEffect(() => {
         if (autenticado) {
             props.history.push("/");
@@ -24,11 +23,15 @@ const Login = (props) => {
             console.log("Esta vaciooo");
             return;
         }
-        iniciarSesion({ email, password });
+        crearUsuario({ email, password });
     };
     return (
         <div className="container d-flex justify-content-center">
-            <form className="card bg-secundary login" onSubmit={onSubmit}>
+            <form
+                action=""
+                className="card bg-secundary login"
+                onSubmit={onSubmit}
+            >
                 <div className="d-flex align-items-center justify-content-center">
                     <img
                         src="logo.png"
@@ -59,13 +62,13 @@ const Login = (props) => {
                 <div className="form-group mt-4 d-flex align-items-end justify-content-center">
                     <input
                         type="submit"
-                        value="Iniciar Sesión"
+                        value="Registrarse"
                         className="btn btn-primary btn"
                     />
                 </div>
                 <div className="form-group mt-2 d-flex align-items-end justify-content-center">
-                    <Link to="/singup" className="btn btn-secundary ">
-                        Obtener una cuenta
+                    <Link to="/login" className="btn btn-secundary ">
+                        Regresar
                     </Link>
                 </div>
             </form>
@@ -73,4 +76,4 @@ const Login = (props) => {
     );
 };
 
-export default Login;
+export default Singup;

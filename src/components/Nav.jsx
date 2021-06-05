@@ -3,7 +3,7 @@ import authContext from "../context/auth/authContext";
 
 const Nav = () => {
     const authcontext = useContext(authContext);
-    const { autenticado, cerrarSesion } = authcontext;
+    const { cerrarSesion } = authcontext;
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container-fluid">
@@ -45,23 +45,14 @@ const Nav = () => {
                             </a>
                         </li>
                     </ul>
-                    <div className="d-flex">
-                        {autenticado ? (
-                            <button
-                                href="/login"
-                                className="btn btn-secondary my-2 my-sm-0 font-roboto"
-                                onClick={() => cerrarSesion()}
-                            >
-                                Cerrar Sesión
-                            </button>
-                        ) : (
-                            <a
-                                href="/login"
-                                className="btn btn-secondary my-2 my-sm-0 font-roboto"
-                            >
-                                Login
-                            </a>
-                        )}
+                    <div className="d-flex ">
+                        <button
+                            href="/login"
+                            className="btn btn-secondary"
+                            onClick={() => cerrarSesion()}
+                        >
+                            Cerrar Sesión
+                        </button>
                     </div>
                 </div>
             </div>
