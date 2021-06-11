@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import authContext from "../context/auth/authContext";
 
-const Nav = () => {
+const Nav = ({ active }) => {
     const authcontext = useContext(authContext);
     const { cerrarSesion } = authcontext;
     return (
@@ -24,25 +25,28 @@ const Nav = () => {
                 <div className="collapse navbar-collapse" id="navbarColor01">
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <a
-                                className="nav-link font-roboto active"
-                                href="!#"
+                            <Link
+                                className={
+                                    active === "home"
+                                        ? "nav-link font-roboto active"
+                                        : "nav-link font-roboto"
+                                }
+                                to="/"
                             >
                                 Home
-                                <span className="visually-hidden">
-                                    (current)
-                                </span>
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link font-roboto" href="!#">
-                                Sensores
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link font-roboto" href="!#">
+                            <Link
+                                className={
+                                    active === "statistics"
+                                        ? "nav-link font-roboto active"
+                                        : "nav-link font-roboto"
+                                }
+                                to="/statistics"
+                            >
                                 Estadisticas
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                     <div className="d-flex ">

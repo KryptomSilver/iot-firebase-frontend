@@ -38,7 +38,7 @@ const Home = () => {
 
     return (
         <Fragment>
-            <Nav />
+            <Nav active="home"/>
             <div className="container mt-5">
                 <div className="row ">
                     <div className="col  offset-md-1">

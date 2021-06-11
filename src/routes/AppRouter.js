@@ -4,6 +4,7 @@ import Home from "../views/Home";
 import Login from "../views/Login";
 import NoMatch from "../views/NoMatch";
 import Singup from "../views/Singup";
+import Statistics from "../views/Statistics";
 import RutaPrivada from "./RutaPrivada";
 import RutaPublica from "./RutaPublica";
 
@@ -12,6 +13,7 @@ const AppRouter = () => {
         <Router>
             <Switch>
                 <RutaPrivada exact path="/" component={Home} />
+                <RutaPrivada exact path="/statistics" component={Statistics} />
                 <RutaPublica exact path="/login" component={Login} />
                 <RutaPublica exact path="/singup" component={Singup} />
                 <Route path="*" component={NoMatch} />
